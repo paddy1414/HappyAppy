@@ -223,7 +223,6 @@ public class FullScreenImageViewActivity extends FragmentActivity implements OnC
         mImageFetcher.closeCache();
     }
 
-    private ProgressDialog myDialog;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -235,73 +234,6 @@ public class FullScreenImageViewActivity extends FragmentActivity implements OnC
                 Toast.makeText(
                         this, R.string.clear_cache_complete_toast,Toast.LENGTH_SHORT).show();
                 return true;
-
-            case R.id.setWallPaper:
-
-            // Set as wallpaper
-            WallpaperManager myWallpaperManager
-                    = WallpaperManager.getInstance(getApplicationContext());
-            try {
-                ImageView img = (ImageView) findViewById(R.id.imageView);
-                Bitmap bmd = ((BitmapDrawable) img.getDrawable()).getBitmap();
-
-                File  mFile = savebitmap(bmd);
-
-                myWallpaperManager.setBitmap(bmd);
-
-
-                AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-                builder1.setTitle("Wallpaper");
-                builder1.setMessage("Wallpaper has been set");
-                builder1.setCancelable(true);
-                builder1.setNeutralButton(android.R.string.ok,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-
-                AlertDialog alert11 = builder1.create();
-                alert11.show();
-
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                return true;
-
-            }
-
-            return true;
-            case R.id.share:
-//Sharing the image
-                // getting the current image on display ...
-                final int extraCurrentItem = getIntent().getIntExtra(EXTRA_IMAGE, -1);
-                // String key = mImageCache.hashKeyForDisk(IMAGESArray.get(extraCurrentItem ));
-                ImageView img = (ImageView) findViewById(R.id.imageView);
-                Bitmap bmd = ((BitmapDrawable) img.getDrawable()).getBitmap();
-
-
-                try {
-                    File  mFile = savebitmap(bmd);
-
-
-                    Intent shareIntent = new Intent();
-
-                    Uri u = null;
-                    u = Uri.fromFile(mFile);
-
-                    shareIntent.setAction(Intent.ACTION_SEND);
-                    shareIntent.putExtra(Intent.EXTRA_STREAM,  u);
-                    shareIntent.putExtra(Intent.EXTRA_TEXT, "Sent From HappyAppy");
-                    shareIntent.setType("image/jpeg");
-                    startActivity(Intent.createChooser(shareIntent, getResources().getText(R.string.share_via_menu)));
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return true;
-
-
-
 
 
         }
@@ -362,47 +294,10 @@ public class FullScreenImageViewActivity extends FragmentActivity implements OnC
     }
 
 
-    private void deleteFile(String inputPath, String inputFile) {
-        try {
-            // delete the original file
-            new File(inputPath + inputFile).delete();
 
 
-        } catch (Exception e) {
-            Log.e("tag", e.getMessage());
-        }
-    }
 
 
-    private File savebitmap(Bitmap bmp) throws IOException {
-        OutputStream outStream = null;
-
-        //you can create a new file name "test.jpeg"
-        File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-                + File.separator + "tmp.jpeg");
-        if (f.exists()) {
-            f.delete();
-            //you can create a new file name "test.jpeg"
-            f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-                    + File.separator + "tmp.jpeg");
-        }
-
-        try {
-
-            outStream = new FileOutputStream(f);
-            bmp.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
-            outStream.flush();
-            outStream.close();
-
-            Log.d("done", "done");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return f;
-    }
 
 
 
