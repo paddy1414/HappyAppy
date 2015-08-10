@@ -95,7 +95,7 @@ public class MainFragment extends Fragment implements AdapterView.OnItemClickLis
 
 
     // the url get all images list
-    private static String url_all_images = "http://192.168.0.109/happyAppy_connect/get_all_pictures.php";
+    private static String url_all_images = "http://192.168.1.2/happyAppy_connect/get_all_pictures.php";
 
     //JSON node names
     private static final String TAG_SUCCESS = "success";
@@ -424,10 +424,10 @@ public class MainFragment extends Fragment implements AdapterView.OnItemClickLis
             protected void onPreExecute () {
             super.onPreExecute();
             myDialog = new ProgressDialog(getActivity());
-            myDialog.setMessage("Loading some awesome images.  Please wait....");
-            myDialog.setIndeterminate(false);
-            myDialog.setCancelable(false);
-            myDialog.show();
+                myDialog.setMessage("Loading some awesome images.  Please wait....");
+                myDialog.setIndeterminate(false);
+                myDialog.setCancelable(false);
+                myDialog.show();
         }
 
             // getting all the images from url
@@ -474,11 +474,20 @@ public class MainFragment extends Fragment implements AdapterView.OnItemClickLis
                     dbi.addImages(i, name);
 
                 }
-            } catch (JSONException e) {
-                Toast.makeText(getActivity(), R.string.no_network_connection_toast,
-                        Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                    myDialog.dismiss();
 
-                e.printStackTrace();
+                    // If you need update UI, simply do this:
+                    getActivity().runOnUiThread(new Runnable() {
+                        public void run() {
+                            // update your UI component here. in order to display friendly error report
+                            Toast.makeText(getActivity(), R.string.server_is_down,
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+
+               // e.printStackTrace();
             }
 
             return null;

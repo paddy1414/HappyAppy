@@ -17,11 +17,15 @@
 
 <resources>
 
+    <string name="firstLoad">Loading some Awesome Images</string>
     <string name="clear_cache_menu">Clear Caches</string>
     <string name="clear_cache_complete_toast">Caches have been cleared</string>
     <string name="imageview_description">Image Thumbnail</string>
+    <string name="server_is_down">Cannot connect to server, please restart this app</string>
     <string name="no_network_connection_toast">No network connection found</string>
     <string name="share_via_menu">Share via....</string>
     <string name="setWallPaperMenu">Set as Wallpaper</string>
+    <string name ="wallpaperChanged">Wallpaper has been set</string>
+    <string name="wallpaperTitle">Wallpaper</string>
 
 </resources>
