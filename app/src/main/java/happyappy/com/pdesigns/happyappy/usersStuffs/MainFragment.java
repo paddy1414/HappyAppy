@@ -95,7 +95,7 @@ public class MainFragment extends Fragment implements AdapterView.OnItemClickLis
 
 
     // the url get all images list
-    private static String url_all_images = "http://192.168.1.2/happyAppy_connect/get_all_pictures.php";
+    private static String url_all_images = "http://pdesigns.hostei.com/happyAppy_connect/get_all_pictures.php";
 
     //JSON node names
     private static final String TAG_SUCCESS = "success";
@@ -504,10 +504,11 @@ public class MainFragment extends Fragment implements AdapterView.OnItemClickLis
 
 
             // updating UI from Background Thread
-            getActivity().runOnUiThread(new Runnable() {
+            getActivity().runOnUiThread(
+                    new Runnable() {
                 public void run() {
                     /**
-                     * Updating parsed JSON data into ListView
+                     * Updating parsed JSON data into gridview
                      * */
 
                     mGridView.setAdapter(mAdapter);
