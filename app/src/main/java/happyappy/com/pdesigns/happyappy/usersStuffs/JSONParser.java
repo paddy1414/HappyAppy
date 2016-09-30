@@ -1,5 +1,7 @@
 package happyappy.com.pdesigns.happyappy.usersStuffs;
 
+import android.util.Log;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -79,9 +81,10 @@ public class JSONParser {
         }
 
         try {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"),8);
+
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"), 8);
             StringBuilder stringBuilder = new StringBuilder();
-            String line = null;
+            String line = "";
             while ((line=bufferedReader.readLine()) !=null) {
                 stringBuilder.append(line +"\n");
             }

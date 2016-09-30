@@ -95,7 +95,7 @@ public class MainFragment extends Fragment implements AdapterView.OnItemClickLis
 
 
     // the url get all images list
-    private static String url_all_images = "http://192.168.0.105/happyAppy_connect/get_all_pictures.php";
+    private static String url_all_images = "http://192.168.1.4/happyAppy_connect/get_all_pictures.php";
 
     //JSON node names
     private static final String TAG_SUCCESS = "success";
@@ -446,7 +446,7 @@ public class MainFragment extends Fragment implements AdapterView.OnItemClickLis
 
 
                 // check for success tag
-                System.out.println("CONNNECTION --------------------------------------------------");
+                    Log.d(TAG, "CONNNECTION --------------------------------------------------");
                 int success = jsonObject.getInt(TAG_SUCCESS);
                 System.out.println(success + "");
                 // the images was found
