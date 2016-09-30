@@ -31,6 +31,7 @@ import happyappy.com.pdesigns.happyappy.ApplicationResources.OsUtils;
 public class MainActivity extends FragmentActivity {
     private static final String TAG = "ImageGridActivity";
     ProgressDialog myDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
